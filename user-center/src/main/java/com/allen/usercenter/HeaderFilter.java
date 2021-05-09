@@ -7,6 +7,8 @@ import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -43,7 +45,7 @@ public class HeaderFilter extends HttpServlet implements Filter{
 		Headers.put("position", "IT");
 		Headers.put("behavior", "PerformanceTest");
 		Map<String, String> Bodies = new HashMap<String, String>();
-		Bodies.put("username", "杨浩");
+		Bodies.put("username", "GoodBoy");
 		Bodies.put("pw", "root123");
 		// 将请求转换成HttpServletRequest 请求 
         HttpServletRequest req = (HttpServletRequest) servletRequest;
@@ -99,7 +101,7 @@ public class HeaderFilter extends HttpServlet implements Filter{
                 	}
                 }
                 if(count == 2) {
-                    
+                    // 头信息验证结束，开始验证body体
                     Integer countParam = 0;
                     for(String bodyName : Bodies.keySet()){
                     	if(Bodies.get(bodyName).equals(RequestBodies.get(bodyName))) {
@@ -108,14 +110,17 @@ public class HeaderFilter extends HttpServlet implements Filter{
                     }
                     
                     if(countParam == 2) {
+                    	// body「username，pw」验证通过
                     	filterChain.doFilter(req, resp);
                     }
                     else {
+                    	// body「username，pw」验证失败
                     	String info_6 = "{'code':400, 'Incorrect Json'}";
                     	resp.sendError(400, info_6);
                     	logger.info(info_6);
                     }
                 }else {
+                	// 头信息验证失败
                 	String info_5 = "{'code':403, 'No Permission'}";
                 	resp.sendError(403, info_5);
                 	logger.info("Incorrect Headers");
@@ -124,11 +129,13 @@ public class HeaderFilter extends HttpServlet implements Filter{
                 
         	}
         	else {
+        		// token验证失败
               String info_3 = "{'msg':'token will invalid at 2 minutes！please refresh'}";
               resp.sendError(401, info_3);
         	}
         }
         else {
+        	// token为null
         	String info_4 = "{'code':403, 'No Access!'}";
         	resp.sendError(401, info_4);
         	logger.info("Found no token");

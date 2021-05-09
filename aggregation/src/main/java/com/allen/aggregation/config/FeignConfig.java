@@ -1,6 +1,7 @@
 package com.allen.aggregation.config;
 
 import com.allen.aggregation.interceptor.FeignAuthRequestInterceptor;
+import feign.Contract;
 import feign.Logger;
 import feign.Request;
 import feign.codec.Decoder;
@@ -31,10 +32,10 @@ public class FeignConfig {
      * 使用Feign原生的注解配置
      * @return
      */
-//    @Bean
-//    public Contract feignContract() {
-//        return new Contract.Default();
-//    }
+    @Bean
+    public Contract feignContract() {
+        return new Contract.Default();
+    }
 
     /**
      * 开启Basic认证
@@ -46,10 +47,10 @@ public class FeignConfig {
 //    }
 
     /**
-     * 自定义拦截器
+     * 自定义拦截器，此处设置了转发头信息
      * @return
      */
-//    @Bean
+    @Bean
     public FeignAuthRequestInterceptor feignAuthRequestInterceptor(){
         return new FeignAuthRequestInterceptor();
     }

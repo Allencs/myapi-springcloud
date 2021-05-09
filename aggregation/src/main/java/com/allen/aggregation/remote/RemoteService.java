@@ -20,7 +20,7 @@ public interface RemoteService {
 //    @RequestLine("POST /order/save")
 //    public R save(@RequestBody OrderVo order);
 
-//    @RequestMapping(value = "POST /myApi/token", method = RequestMethod.GET)
+//    @RequestMapping(value = "/myApi/token", method = RequestMethod.GET)
     @RequestLine("GET /myApi/token")
     String getToken();
 

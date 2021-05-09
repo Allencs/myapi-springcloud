@@ -4,35 +4,40 @@ package com.allen.aggregation.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.allen.aggregation.feign.UserFeignService;
 import com.allen.commons.PersonProperties;
-import feign.RequestLine;
+import com.allen.commons.Token;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 
 
 @RestController
 public class UserController {
 
+    private static Logger logger = LoggerFactory
+            .getLogger(UserController.class);
+
     @Autowired
     UserFeignService userFeignService;
 
     @RequestMapping(value = "/getPersonInfo", method = RequestMethod.POST)
-    public JSONObject getPersonInfo() {
+    public JSONObject getPersonInfo(@RequestBody PersonProperties personProperties) {
         //feign调用
-        JSONObject result = userFeignService.getPersonInfo();
-        return result;
+        return userFeignService.getPersonInfo(personProperties);
     }
 
     @RequestMapping(value = "/userToken", method = RequestMethod.GET)
-    public String getUserToken() {
-        System.out.println(userFeignService);
+    public Token getUserToken() {
         //feign调用
-        String result = userFeignService.getToken();
-        return result;
+        return userFeignService.getToken();
+    }
+
+    @RequestMapping(value = "/userPost", method = RequestMethod.POST)
+    public PersonProperties userPost(@RequestBody JSONObject body) {
+        //feign调用
+        return userFeignService.post(body);
     }
     
     
