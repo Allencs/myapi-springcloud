@@ -11,7 +11,7 @@
     <modules>
         <module>aggregation</module>
         <module>user-center</module>
-        <module>user-gateway</module>
+<!--        <module>user-gateway</module>-->
         <module>commons</module>
     </modules>
     <groupId>com.allen</groupId>

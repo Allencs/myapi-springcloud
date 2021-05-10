@@ -22,7 +22,7 @@ ribbon:
 
 logging:
   level:
-    com.allen.aggregation.feigndemo.feign: debug
+    org.springframework.boot: info
 
 feign:
 #  client:
