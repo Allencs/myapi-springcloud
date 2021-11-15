@@ -40,7 +40,7 @@ feign:
 #        encoder: feign.jackson.JacksonEncoder
 #        decoder: feign.jackson.JacksonDecoder
 
-  #feign 使用 okhttp
+  #feign 使用 httpClient（默认maxPerRoute 5， MaxTotal 10）
   httpclient:
     enabled: true
 #  okhttp:
