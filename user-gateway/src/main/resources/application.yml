@@ -1,6 +1,6 @@
 
 server:
-  port: 7000
+  port: 7777
 spring:
   application:
     name: user-gateway
