@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 //FeignConfig局部配置
 //@FeignClient(value = "mall-order",path = "/order",configuration = FeignConfig.class)
-@FeignClient(value = "user-gateway", path = "/myApi", configuration = FeignConfig.class)
+@FeignClient(value = "user-gateway", url = "http://localhost:7777", path = "/myApi", configuration = FeignConfig.class)
 public interface UserFeignService {
 
     @Headers({"Content-Type: application/json","Accept: application/json"})
