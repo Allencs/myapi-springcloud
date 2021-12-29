@@ -22,7 +22,7 @@ ribbon:
 
 logging:
   level:
-    org.springframework.boot: info
+    org.springframework.boot: debug
 
 feign:
 #  client:
@@ -40,9 +40,12 @@ feign:
 #        encoder: feign.jackson.JacksonEncoder
 #        decoder: feign.jackson.JacksonDecoder
 
-  #feign 使用 httpClient（默认maxPerRoute 5， MaxTotal 10）
+  # feign 使用 httpClient（默认maxPerRoute 5， MaxTotal 10）
+  #  Spring Cloud默认重设【FeignHttpClientProperties】（DEFAULT_MAX_CONNECTIONS 200， DEFAULT_MAX_CONNECTIONS_PER_ROUTE = 50）
   httpclient:
     enabled: true
+#    maxConnections: 200
+#    maxConnectionsPerRoute: 200
 #  okhttp:
 #    enabled: true
   # 配置 GZIP 来压缩数据
