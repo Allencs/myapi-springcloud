@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.allen.commons.CreateJson;
 import com.allen.commons.JWTUtil;
 import com.allen.commons.PersonProperties;
+import com.allen.commons.Token;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,10 +27,13 @@ public class UserController {
 
 
     @RequestMapping(value = "/myApi/token", method = RequestMethod.GET)
-    public String GetToken() {
+    public Token GetToken() {
 
-        String token = JWTUtil.createJWT("1", "allen", "myApi", 1000*60*5);//2分钟
-        return token;
+        String tokenValue = JWTUtil.createJWT("1", "allen", "myApi", 1000*60*5);//2分钟
+        Token tokenObj = new Token();
+        tokenObj.setToken(tokenValue);
+        tokenObj.setStatus("success");
+        return tokenObj;
     }
 
     @RequestMapping(value = "/myApi/personInfo", method = RequestMethod.POST)
