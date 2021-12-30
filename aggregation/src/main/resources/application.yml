@@ -22,7 +22,7 @@ ribbon:
 
 logging:
   level:
-    org.springframework.boot: debug
+    org.springframework.boot: info
 
 feign:
 #  client:
