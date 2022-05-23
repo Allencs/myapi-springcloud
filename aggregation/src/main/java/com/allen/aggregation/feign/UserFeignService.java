@@ -32,6 +32,11 @@ public interface UserFeignService {
     @Body("{body}")
     PersonProperties post(@Param("body") JSONObject body);
 
+    @Headers({"Content-Type: application/json","Accept: application/json"})
+    @RequestLine("POST /demo")
+    @Body("{body}")
+    PersonProperties demo(@Param("body") JSONObject body);
+
 
 //    @RequestLine("GET /findOrderByUserId/{userId}")
 //    R findOrderByUserId(@Param("userId") Integer userId);

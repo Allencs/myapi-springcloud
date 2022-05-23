@@ -10,13 +10,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
-
-
 @RestController
 public class UserController {
 
-    private static Logger logger = LoggerFactory
+    private static final Logger logger = LoggerFactory
             .getLogger(UserController.class);
 
     @Autowired
@@ -39,7 +36,12 @@ public class UserController {
         //feign调用
         return userFeignService.post(body);
     }
-    
+
+    @RequestMapping(value = "/demo", method = RequestMethod.POST)
+    public PersonProperties getDemo(@RequestBody JSONObject body) {
+        //feign调用
+        return userFeignService.demo(body);
+    }
     
 //    @RequestMapping(value = "/save")
 //    public R save(@RequestBody OrderVo order){

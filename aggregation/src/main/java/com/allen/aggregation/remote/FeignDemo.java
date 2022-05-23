@@ -21,7 +21,7 @@ public class FeignDemo {
 //                .decoder(new JacksonDecoder())
                 .options(new Request.Options(1000, 3500))
                 //.retryer(new Retryer.Default(5000, 5000, 3))
-                .target(RemoteService.class, "http://localhost:8085/");
+                .target(RemoteService.class, "http://localhost:8085");
 
         System.out.println(service.getToken());
         
